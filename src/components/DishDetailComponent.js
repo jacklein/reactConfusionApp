@@ -1,21 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle } from 'reactstrap';
 
-class DishDetail extends Component {
-
-    constructor(props){
-        super(props);
-
-        console.log("Dish Detail constructor invoked")
-    }
-
-    render() {
-        console.log("Dish Detail render invoked")
-        
-        const dish = this.props.selectedDish;
-
-        // formatting for dish image and description
-        const dishInfo = 
+    // formatting for dish image and description
+    function RenderDishInfo({dish}){
+        return(
             <div key={dish.id} className="col-12 col-md-5 m-1">
                 <Card>
                     <CardImg width="100%" src={dish.image} alt={dish.name} />
@@ -25,32 +13,45 @@ class DishDetail extends Component {
                     </CardBody>
                 </Card>
             </div>
+        );
+    }
 
-        // formatting for dish comments
-        const comments = 
+    // formatting for dish comments
+    function RenderComments({comments}){
+        return(
             <div className="col-12 col-md-5 m-1">
                 <h1>Comments</h1>
                 
                 <ul className="list-unstyled">
-                {dish.comments.map((comment) => {
+                {comments.map((comment) => {
                     return(
                         <li key={comment.id}>
                             {comment.comment} <br/>
-                             --{comment.author}
+                             --{comment.author}, {new Intl.DateTimeFormat('en-US',{ year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}
                         </li>
                     )
                 })}
                 </ul>
             </div>
+        );
+    }
+
+    const DishDetail = (props) => {
+        console.log("DishDetail Component render invoked")
+        
+        // return nothing if no dish selected
+        if(!props.selectedDish){
+            return <div></div>
+        }
 
         return(
             <div className="row">
-                {dishInfo}
-                {comments}
+                <RenderDishInfo dish = {props.selectedDish} />
+                <RenderComments comments = {props.selectedDish.comments} />
             </div>
         );
     }
 
-}
+
 
 export default DishDetail;
