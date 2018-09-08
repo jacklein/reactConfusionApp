@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle } from 'reactstrap';
 
-    // formatting for dish image and description
+    // component for dish image and description
     function RenderDishInfo({dish}){
         return(
             <div key={dish.id} className="col-12 col-md-5 m-1">
@@ -16,7 +16,7 @@ import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle } from 're
         );
     }
 
-    // formatting for dish comments
+    // component for dish comments
     function RenderComments({comments}){
         return(
             <div className="col-12 col-md-5 m-1">
