@@ -27,16 +27,22 @@ class Main extends Component {
   */
 
   render() {
+
+    const HomePage = () => {
+        return(
+            <Home />
+        );
+    }
+    
     return (
       <div>
         <Header />
-        <div className="container">
-            <Menu dishes={this.state.dishes}
-                onClick={(dishId) => this.onDishSelect(dishId)}/>
-            <DishDetail 
-                selectedDish={this.state.dishes.filter((dish) => dish.id === this.state.selectedDish)[0]} />
-            <Footer />
-        </div>
+        <Switch>
+            <Route path="/home" component={HomePage} />
+            <Route exact path="/menu" component={() => <Menu dishes={this.state.dishes} />} />
+            <Redirect to="/home" />
+        </Switch>
+        <Footer />
       </div>
     );
   }
