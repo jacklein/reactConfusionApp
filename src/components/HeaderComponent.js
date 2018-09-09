@@ -48,7 +48,7 @@ class Header extends Component {
                                     </NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink className="nav-link" to="/contactus">
+                                    <NavLink className="nav-link" to="/contact">
                                         <span className="fa fa-address-card fa-lg"></span> Contact Us
                                     </NavLink>
                                 </NavItem>
@@ -61,7 +61,7 @@ class Header extends Component {
                         <div className="row row-header">
                             <div className="col-12 col-sm-6">
                                 <h1>Ristorante Con Fusion</h1>
-                                <p>We take inspiration from the World's best cusisines, and create a unique fusion experience.</p>
+                                <p>We take inspiration from the World's best cuisines, and create a unique fusion experience.</p>
                             </div>
                         </div>
                     </div>
