@@ -25,12 +25,13 @@ class CommentForm extends Component {
     }
 
     handleSubmit(values) {
-        alert("Current state is: " + JSON.stringify(values));
+        //alert("Current state is: " + JSON.stringify(values));
+        this.props.addComment(this.props.dishId, values.rating, values.name, values.comment);
     }
 
     render() {
         return(
-            <React.Fragment> 
+            <div> 
                 <Button outline onClick={this.toggleModal}>
                     <span className="fa fa-sign-pencil fa-lg">{this.state.title}</span>
                 </Button>
@@ -91,7 +92,7 @@ class CommentForm extends Component {
                         </LocalForm> 
                     </ModalBody>
                 </Modal>
-            </React.Fragment>
+            </div>
         )
     }
 }
