@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Card, CardImg, CardText, CardBody, CardTitle,
-         Breadcrumb, BreadcrumbItem } from 'reactstrap';
-import { Link } from 'react-router-dom'
+         Breadcrumb, BreadcrumbItem, Button } from 'reactstrap';
+import { Link } from 'react-router-dom';
+import CommentForm from './CommentFormComponent';
+
 
     // component for dish image and description
     function RenderDish({dish}){
@@ -33,12 +35,15 @@ import { Link } from 'react-router-dom'
                     )
                 })}
                 </ul>
+
+                <CommentForm title="Submit Comment" />
             </div>
         );
     }
 
+
+
     const DishDetail = (props) => {
-        console.log("DishDetail Component render invoked")
         
         if(props.dish != null)
             return(
@@ -60,9 +65,8 @@ import { Link } from 'react-router-dom'
                 </div>
             );
         else
-            return <div></div>
-        
-    }
+            return <div></div>   
+}
 
 
 
