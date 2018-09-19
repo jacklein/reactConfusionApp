@@ -21,7 +21,7 @@ import { baseUrl } from '../shared/baseUrl';
     }
 
     // component for dish comments
-    function RenderComments({comments, addComment, dishId}){
+    function RenderComments({comments, postComment, dishId}){
         return(
             <div className="col-12 col-md-5 m-1">
                 <h1>Comments</h1>
@@ -37,7 +37,7 @@ import { baseUrl } from '../shared/baseUrl';
                 })}
                 </ul>
 
-                <CommentForm title="Submit Comment" addComment={addComment} dishId={dishId}/>
+                <CommentForm title="Submit Comment" postComment={postComment} dishId={dishId}/>
             </div>
         );
     }
@@ -82,7 +82,7 @@ import { baseUrl } from '../shared/baseUrl';
                     <div className="row">
                         <RenderDish dish = {props.dish} />
                         <RenderComments comments = {props.comments}
-                            addComment={props.addComment}
+                            postComment={props.postComment}
                             dishId={props.dish.id} />
                     </div>
                 </div>
