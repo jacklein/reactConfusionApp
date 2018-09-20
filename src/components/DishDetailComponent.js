@@ -4,13 +4,14 @@ import { Card, CardImg, CardText, CardBody,
 import { Link } from 'react-router-dom';
 import CommentForm from './CommentFormComponent';
 import { Loading } from './LoadingComponent';
+import { baseUrl } from '../shared/baseUrl';
 
     // component for dish image and description
     function RenderDish({dish}){
         return(
             <div key={dish.id} className="col-12 col-md-5 m-1">
                 <Card>
-                    <CardImg width="100%" src={dish.image} alt={dish.name} />
+                    <CardImg width="100%" src={baseUrl + dish.image} alt={dish.name} />
                     <CardBody>
                        <CardText>{dish.description}</CardText>
                     </CardBody>
@@ -20,7 +21,7 @@ import { Loading } from './LoadingComponent';
     }
 
     // component for dish comments
-    function RenderComments({comments, addComment, dishId}){
+    function RenderComments({comments, postComment, dishId}){
         return(
             <div className="col-12 col-md-5 m-1">
                 <h1>Comments</h1>
@@ -36,7 +37,7 @@ import { Loading } from './LoadingComponent';
                 })}
                 </ul>
 
-                <CommentForm title="Submit Comment" addComment={addComment} dishId={dishId}/>
+                <CommentForm title="Submit Comment" postComment={postComment} dishId={dishId}/>
             </div>
         );
     }
@@ -81,7 +82,7 @@ import { Loading } from './LoadingComponent';
                     <div className="row">
                         <RenderDish dish = {props.dish} />
                         <RenderComments comments = {props.comments}
-                            addComment={props.addComment}
+                            postComment={props.postComment}
                             dishId={props.dish.id} />
                     </div>
                 </div>
