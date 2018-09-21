@@ -16,39 +16,9 @@ class Contact extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    validate(firstName, lastName, telNum, email){
-        const errors = {
-            firstName: '',
-            lastName: '',
-            telNum: '',
-            email: ''
-        };
-
-        if(this.state.touched.firstName && firstName.length < 3)
-            errors.firstName = 'First Name should be >= 3 characters';
-        else if(this.state.touched.firstName && firstName.length > 10)
-            errors.firstName = 'First name should be <= 10 characters';
-
-        if(this.state.touched.lastName && lastName.length < 3)
-            errors.lastName = 'Last Name should be >= 3 characters';
-        else if(this.state.touched.lastName && lastName.length > 10)
-            errors.lastName = 'Last name should be <= 10 characters';
-        
-        // study reg expressions
-        const reg = /^\d+$/;
-        if(this.state.touched.telNum && !reg.test(telNum))
-            errors.telNum = 'Tel. Number should only contain numbers';
-
-        // needs at least 1 @
-        if(this.state.touched.email && email.split('').filter(x => x === '@').length !== 1)
-            errors.email = 'Email should contain a @';
-
-        return errors;
-    }
-
     handleSubmit(values) {
         console.log("Current state is: " + JSON.stringify(values));
-        alert("Current state is: " + JSON.stringify(values));
+        this.props.postFeedback(values);
         this.props.resetFeedbackForm();
     }
 

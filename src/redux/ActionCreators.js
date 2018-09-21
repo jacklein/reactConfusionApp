@@ -195,3 +195,51 @@ export const addLeaders = (leaders) => ({
     type: ActionTypes.ADD_LEADERS,
     payload: leaders
 });
+
+//FEEDBACK ACTION CREATORS
+export const postFeedback = (props) => (dispatch) => {
+
+    const newFeedback = {
+        firstName: props.firstName,
+        lastName: props.lastName,
+        telNum: props.telNum,
+        email: props.email,
+        agree: props.agree,
+        contactType: props.contactType,
+        message: props.message
+    }
+    newFeedback.date = new Date().toISOString();
+
+    return fetch(baseUrl + 'feedback', {
+            method: 'POST',
+            body: JSON.stringify(newFeedback),
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            credentials: 'same-origin'
+        })
+        .then(response => {
+            if (response.ok) {
+                return response;
+            }
+            else {
+                var error = new Error('Error ' + response.status + ': ' + response.statusText);
+                error.response = response;
+                throw error;
+            }
+        }, 
+        error => {
+            var errMess = new Error(error.message);
+            throw errMess;
+        })
+        .then(response => response.json())
+        .then(response => {dispatch(addFeedback(response));
+            alert(JSON.stringify(response)); }) 
+        .catch(error => { console.log('Post feedback ', error.message);
+            alert('Your feedback could not be posted\nError: ' + error.message); })
+}
+
+export const addFeedback = (feedback) => ({
+    type: ActionTypes.ADD_FEEDBACK,
+    payload: feedback
+});
