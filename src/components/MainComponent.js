@@ -34,11 +34,6 @@ const mapDispatchToProps = (dispatch) => ({
 // container component, provides data and handles UI
 class Main extends Component {
 
-  constructor(props) {
-    super(props);
-
-  }
-
   // good time to fetch data for application
   componentDidMount() {
     this.props.fetchDishes();
